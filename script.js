@@ -23,3 +23,14 @@ function addBookToLibrary() {
 
     return myLibrary.push(book01);
 }
+
+function displayBooks() {
+    let i = 0;
+    
+    while (i < myLibrary.length) {
+        console.log(myLibrary[i].info());
+        i++
+    }
+
+    i = 0;
+}
