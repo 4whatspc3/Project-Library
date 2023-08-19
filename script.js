@@ -45,3 +45,22 @@ function displayBooks() {
 
     i = 0;
 }
+
+const modal = document.querySelector('.modal');
+const openModal = document.querySelector('.open-button');
+const closeModal = document.querySelector('.close-button');
+const formToReset = document.querySelector('.form');
+
+openModal.addEventListener('click', () => {
+    modal.showModal();
+})
+
+closeModal.addEventListener('click', () => {
+    modal.close();
+})
+
+formToReset.addEventListener('submit', (e) => {
+    e.preventDefault();
+    formToReset.reset();
+    modal.close();
+})

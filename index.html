@@ -9,7 +9,30 @@
 </head>
 <body>
     <div class="container">
-        
+        <button class="button open-button">open modal</button>
+
+        <dialog class="modal" id="modal">
+            <form class="form" method="dialog" autocomplete="off">
+                <div>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" placeholder="Ex. Neil Gaiman" minlength="1" required>
+                </div>
+                <div>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" placeholder="Ex. Norse Mythology" minlength="1" required>
+                </div>
+                <div>
+                    <label for="pages">How many pages?</label>
+                    <input type="number" id="pages" name="pages" placeholder="Ex. 12" min="1" required>
+                </div>
+                <div>
+                    <input type="checkbox" id="readOrNot" name="readOrNot">
+                    <label for="readOrNot">Have you read it?</label>
+                </div>
+                <button class="button" type="submit">submit form</button>
+            </form>
+            <button class="button close-button">close modal</button>
+        </dialog>
     </div>
 </body>
 </html>
