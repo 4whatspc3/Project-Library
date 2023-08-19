@@ -28,7 +28,18 @@ function displayBooks() {
     let i = 0;
     
     while (i < myLibrary.length) {
-        console.log(myLibrary[i].info());
+        const container = document.querySelector('.container');
+
+        const content = document.createElement('div');
+
+        content.classList.add('content');
+
+        content.setAttribute('style','border: 1px solid blue;');
+
+        content.textContent = `${myLibrary[i].info()}`;
+
+        container.appendChild(content);
+        
         i++
     }
 
