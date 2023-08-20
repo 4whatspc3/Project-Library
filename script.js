@@ -2,34 +2,41 @@ const myLibrary = [];
 
 Book.prototype = {
     info : function() {
-        return `${this.title} by ${this.author}, ${this.pages}, ${this.read}`
+        return `${this.title} by ${this.author}, ${this.pages}, ${this.readOrNot}`
     }
 }
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, readOrNot) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.read = read
+    this.readOrNot = readOrNot
 }
 
 function addBookToLibrary() {
-    let title = prompt('Please enter a title');
-    let author = prompt('Please tell me the author');
-    let pages = prompt('How many pages');
-    let read = prompt('Already read or not');
-
-    const book01 = new Book(title, author, pages, read);
+    if(readOrNot.checked){
+        readOrNot.value = 'read';
+    } else {
+        readOrNot.value = 'not read yet'
+    }
+    
+    const book01 = new Book(title.value, author.value, pages.value, readOrNot.value);
 
     return myLibrary.push(book01);
+}
+
+function empty(element) {
+    element.replaceChildren(); 
 }
 
 function displayBooks() {
     let i = 0;
     
-    while (i < myLibrary.length) {
-        const container = document.querySelector('.container');
+    const answer = document.querySelector('.answer');
 
+    empty(answer);
+
+    while (i < myLibrary.length) {
         const content = document.createElement('div');
 
         content.classList.add('content');
@@ -38,7 +45,7 @@ function displayBooks() {
 
         content.textContent = `${myLibrary[i].info()}`;
 
-        container.appendChild(content);
+        answer.appendChild(content);
         
         i++
     }
@@ -61,6 +68,14 @@ closeModal.addEventListener('click', () => {
 
 formToReset.addEventListener('submit', (e) => {
     e.preventDefault();
+    
+    addBookToLibrary();
+
+    console.log(myLibrary);
+
+    displayBooks();
+
     formToReset.reset();
+    
     modal.close();
 })
