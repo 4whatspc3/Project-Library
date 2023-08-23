@@ -1,4 +1,5 @@
 const myLibrary = [];
+let i = 0;
 
 Book.prototype = {
     info : function() {
@@ -29,9 +30,7 @@ function empty(element) {
     element.replaceChildren(); 
 }
 
-function displayBooks() {
-    let i = 0;
-    
+function displayBooks() {    
     const answer = document.querySelector('.answer');
 
     empty(answer);
@@ -43,14 +42,40 @@ function displayBooks() {
 
         content.setAttribute('style','border: 1px solid blue;');
 
-        content.textContent = `${myLibrary[i].info()}`;
+        content.setAttribute('data-book-index', `${i}`);
+
+        content.textContent = `${myLibrary[i].info()} `;
+
+        const btn = document.createElement('button');
+
+        btn.classList.add('btn');
+
+        btn.textContent = 'Remove book';
+
+        content.appendChild(btn);
 
         answer.appendChild(content);
         
         i++
     }
+}
 
-    i = 0;
+function removeBook() {   
+    const btn = document.querySelectorAll('.btn');
+
+    btn.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = document.querySelectorAll('.content');
+
+                content.forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        if(e.target.matches('button')){
+                            console.log(myLibrary.splice(card.dataset.bookIndex, 1));
+                        }
+                    })
+                })
+            });
+    });
 }
 
 const modal = document.querySelector('.modal');
@@ -75,7 +100,11 @@ formToReset.addEventListener('submit', (e) => {
 
     displayBooks();
 
+    removeBook();
+
     formToReset.reset();
     
     modal.close();
+
+    i = 0;
 })
