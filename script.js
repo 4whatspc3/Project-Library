@@ -2,8 +2,12 @@ const myLibrary = [];
 let i = 0;
 
 Book.prototype = {
-    info : function() {
-        return `${this.title} by ${this.author}, ${this.pages}, ${this.readOrNot}`
+    allInfo : function() {
+        return `${this.title} by ${this.author}, ${this.pages}`
+    },
+
+    readInfo : function() {
+        return this.readOrNot
     }
 }
 
@@ -18,7 +22,7 @@ function addBookToLibrary() {
     if(readOrNot.checked){
         readOrNot.value = 'read';
     } else {
-        readOrNot.value = 'not read yet'
+        readOrNot.value = 'not read'
     }
     
     const book01 = new Book(title.value, author.value, pages.value, readOrNot.value);
@@ -30,7 +34,7 @@ function empty(element) {
     element.replaceChildren(); 
 }
 
-function displayBooks() {    
+function displayBooks() {
     const answer = document.querySelector('.answer');
 
     empty(answer);
@@ -44,7 +48,7 @@ function displayBooks() {
 
         content.setAttribute('data-book-index', `${i}`);
 
-        content.textContent = `${myLibrary[i].info()} `;
+        content.textContent = `${myLibrary[i].allInfo()} `;
 
         const btn = document.createElement('button');
 
@@ -52,7 +56,15 @@ function displayBooks() {
 
         btn.textContent = 'Remove book';
 
+        const btn2 = document.createElement('button');
+
+        btn2.classList.add('btn2');
+
+        btn2.textContent = `${myLibrary[i].readInfo()}`;
+
         content.appendChild(btn);
+
+        content.appendChild(btn2);
 
         answer.appendChild(content);
         
@@ -87,6 +99,26 @@ function removeBook() {
     });
 }
 
+function updateStatus() {
+    const btn2 = document.querySelectorAll('.btn2');
+
+    btn2.forEach(button => {
+        button.addEventListener('click', (e) => {
+            if(e.target.textContent === 'read'){
+
+                e.target.textContent = 'not read';
+
+                myLibrary[e.target.parentNode.dataset.bookIndex].readOrNot = 'not read';
+            } else {
+
+               e.target.textContent = 'read';
+               
+               myLibrary[e.target.parentNode.dataset.bookIndex].readOrNot = 'read';
+            }
+        })
+    })
+}
+
 const modal = document.querySelector('.modal');
 const openModal = document.querySelector('.open-button');
 const closeModal = document.querySelector('.close-button');
@@ -110,6 +142,8 @@ formToReset.addEventListener('submit', (e) => {
     displayBooks();
 
     removeBook();
+
+    updateStatus();
 
     formToReset.reset();
     
