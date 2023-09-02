@@ -58,23 +58,32 @@ function displayBooks() {
         
         i++
     }
+
+    i=0;
 }
 
 function removeBook() {   
     const btn = document.querySelectorAll('.btn');
 
     btn.forEach(button => {
-            button.addEventListener('click', () => {
-                const content = document.querySelectorAll('.content');
+        button.addEventListener('click', (e) => {
+            console.log(e.target.parentNode)
+            myLibrary.splice(e.target.parentNode.dataset.bookIndex, 1);
+            e.target.parentNode.remove();
 
+            const content = document.querySelectorAll('.content');
+
+            while (i < myLibrary.length - 1){
                 content.forEach(card => {
-                    card.addEventListener('click', (e) => {
-                        if(e.target.matches('button')){
-                            console.log(myLibrary.splice(card.dataset.bookIndex, 1));
-                        }
-                    })
+                    card.setAttribute('data-book-index', `${i}`)
+                    console.log(card)
+
+                    i++
                 })
-            });
+            }
+
+            i=0;
+        });
     });
 }
 
@@ -105,6 +114,4 @@ formToReset.addEventListener('submit', (e) => {
     formToReset.reset();
     
     modal.close();
-
-    i = 0;
 })
