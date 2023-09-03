@@ -15,30 +15,34 @@
         </div>
         
         <div class="open-modal">
-            <button class="button open-button">open modal</button>
+            <button class="button open-button">Open modal</button>
         </div>
 
         <dialog class="modal" id="modal">
-            <form class="form" method="dialog" autocomplete="off">
-                <div>
-                    <label for="author">Author:</label>
-                    <input type="text" id="author" name="author" placeholder="Ex. Neil Gaiman" minlength="1" required>
-                </div>
-                <div>
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" placeholder="Ex. Norse Mythology" minlength="1" required>
-                </div>
-                <div>
-                    <label for="pages">How many pages?</label>
-                    <input type="number" id="pages" name="pages" placeholder="Ex. 12" min="1" required>
-                </div>
-                <div>
-                    <input type="checkbox" id="readOrNot" name="readOrNot">
-                    <label for="readOrNot">Have you read it?</label>
-                </div>
-                <button class="button" type="submit">submit form</button>
-            </form>
-            <button class="button close-button">close modal</button>
+            <div class="modal-content">
+                <form class="form" method="dialog" autocomplete="off">
+                    <div>
+                        <label for="author">Author:</label>
+                        <input type="text" id="author" name="author" placeholder="Ex. Neil Gaiman" minlength="1" required>
+                    </div>
+                    <div>
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" placeholder="Ex. Norse Mythology" minlength="1" required>
+                    </div>
+                    <div>
+                        <label for="pages">How many pages?</label>
+                        <input type="number" id="pages" name="pages" placeholder="Ex. 12" min="1" required>
+                    </div>
+                    <div>
+                        <label for="readOrNot">Have you read it?</label>
+                        <input type="checkbox" id="readOrNot" name="readOrNot">
+                    </div>
+                    <div>
+                        <button class="button" type="submit">Submit form</button>
+                    </div>
+                </form>
+                <button class="button close-button">Close modal</button>
+            </div>
         </dialog>
 
         <div class="answer"></div>
