@@ -79,22 +79,27 @@ function removeBook() {
 
     btn.forEach(button => {
         button.addEventListener('click', (e) => {
-            console.log(e.target.parentNode)
             myLibrary.splice(e.target.parentNode.dataset.bookIndex, 1);
+            
             e.target.parentNode.remove();
 
             const content = document.querySelectorAll('.content');
 
             while (i < myLibrary.length - 1){
                 content.forEach(card => {
-                    card.setAttribute('data-book-index', `${i}`)
-                    console.log(card)
+                    card.setAttribute('data-book-index', `${i}`);
 
                     i++
                 })
             }
 
             i=0;
+
+            const answer = document.querySelector('.answer');
+            
+            if(answer.hasChildNodes() === false) {
+                myLibrary.length = 0;
+            }
         });
     });
 }
@@ -136,8 +141,6 @@ formToReset.addEventListener('submit', (e) => {
     e.preventDefault();
     
     addBookToLibrary();
-
-    console.log(myLibrary);
 
     displayBooks();
 
