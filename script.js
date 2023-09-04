@@ -3,7 +3,9 @@ let i = 0;
 
 Book.prototype = {
     allInfo : function() {
-        return `${this.title} by ${this.author}, ${this.pages}`
+        return `${this.title}
+by ${this.author},
+${this.pages} pages`
     },
 
     readInfo : function() {
@@ -44,8 +46,6 @@ function displayBooks() {
 
         content.classList.add('content');
 
-        content.setAttribute('style','border: 1px solid blue;');
-
         content.setAttribute('data-book-index', `${i}`);
 
         content.textContent = `${myLibrary[i].allInfo()} `;
@@ -62,9 +62,9 @@ function displayBooks() {
 
         btn2.textContent = `${myLibrary[i].readInfo()}`;
 
-        content.appendChild(btn);
-
         content.appendChild(btn2);
+
+        content.appendChild(btn);
 
         answer.appendChild(content);
         
