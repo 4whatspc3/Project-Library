@@ -63,6 +63,16 @@ body {
     padding: 8px 63px;
 }
 
+.button.open-button:hover {
+    padding: 17px 65px;
+    background-color: #ff4aa4;
+}
+
+.modal-content button:hover {
+    padding: 8px 33px;
+    background-color: #ff4aa4;
+}
+
 /*Modal and form style*/
 .modal {
    position: absolute;

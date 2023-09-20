@@ -1,23 +1,23 @@
 const myLibrary = [];
 let i = 0;
 
-Book.prototype = {
-    allInfo : function() {
+class Book {
+    constructor(title, author, pages, readOrNot) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.readOrNot = readOrNot
+    }
+    
+    get allInfo() {
         return `${this.title}
 by ${this.author},
 ${this.pages} pages`
-    },
+    }
 
-    readInfo : function() {
+    get readInfo() {
         return this.readOrNot
     }
-}
-
-function Book(title, author, pages, readOrNot) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.readOrNot = readOrNot
 }
 
 function addBookToLibrary() {
@@ -48,7 +48,7 @@ function displayBooks() {
 
         content.setAttribute('data-book-index', `${i}`);
 
-        content.textContent = `${myLibrary[i].allInfo()} `;
+        content.textContent = `${myLibrary[i].allInfo} `;
 
         const btn = document.createElement('button');
 
@@ -60,7 +60,7 @@ function displayBooks() {
 
         btn2.classList.add('btn2');
 
-        btn2.textContent = `${myLibrary[i].readInfo()}`;
+        btn2.textContent = `${myLibrary[i].readInfo}`;
 
         content.appendChild(btn2);
 
